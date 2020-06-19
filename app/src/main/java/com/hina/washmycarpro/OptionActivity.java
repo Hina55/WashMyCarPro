@@ -49,6 +49,7 @@ public class OptionActivity extends AppCompatActivity implements View.OnClickLis
         }
         TextView providertxt = findViewById(R.id.serviceProvidertxt);
         providertxt.setText(service);
+        String h = "hina";
 
 
     }
