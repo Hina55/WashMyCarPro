@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -34,9 +35,11 @@ public class CreateOrderActivity extends AppCompatActivity {
     DatePickerDialog datePickerDialog;
     String mTime,mDate;
     CheckBox checkBoxAirFreshner,checkBoxSteamCleam;
-    int totalPrice;
+    int totalPrice=0;
     int steamCleanPrice = 500;
     int freshnerPrice = 50;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,22 @@ public class CreateOrderActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1F7FB8")));
         getSupportActionBar().setTitle("Create Order");
+
+        checkBoxSteamCleam = (CheckBox) findViewById(R.id.steamCleanCheck);
+        checkBoxAirFreshner = (CheckBox) findViewById(R.id.airFreshnerCheck);
+
+
+
+        ImageButton imgB=(ImageButton)findViewById(R.id.GOTOBook);
+        imgB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CreateOrderActivity.this,OrderConfirmActivity.class));
+
+
+            }
+        });
+
 
         timetxt = findViewById(R.id.time);
         datetxt = findViewById(R.id.date);
@@ -140,40 +159,98 @@ public class CreateOrderActivity extends AppCompatActivity {
         PriceTagtxt = findViewById(R.id.pricetxt);
         PriceTagtxt.setText(value3 + " Rs.");
 
-        checkBoxAirFreshner = (CheckBox) findViewById(R.id.airFreshnerCheck);
-        checkBoxSteamCleam = (CheckBox) findViewById(R.id.steamCleanCheck);
         final int servicePrice = Integer.parseInt(value3);
-
         checkBoxAirFreshner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkBoxAirFreshner.isChecked()){
+
+                if (checkBoxAirFreshner.isChecked()) {
+
+                    totalPrice = servicePrice + freshnerPrice;
+                }
+                if (!checkBoxAirFreshner.isChecked()) {
+
+
+                    totalPrice = servicePrice;
+                    PriceTagtxt.setText(String.valueOf(totalPrice) + " Rs.");
+
+                }
+                if ((!checkBoxSteamCleam.isChecked())&&checkBoxAirFreshner.isChecked()) {
+
 
                     totalPrice = servicePrice+freshnerPrice;
-                    PriceTagtxt.setText(String.valueOf(totalPrice)+" Rs.");
-                }
-                else if(!checkBoxAirFreshner.isChecked()){
+                    PriceTagtxt.setText(String.valueOf(totalPrice) + " Rs.");
 
-                    PriceTagtxt.setText(String.valueOf(value3)+ " Rs.");
+
                 }
+                if ((!checkBoxAirFreshner.isChecked())&&checkBoxSteamCleam.isChecked()) {
+
+
+                    totalPrice = servicePrice+steamCleanPrice;
+                    PriceTagtxt.setText(String.valueOf(totalPrice) + " Rs.");
+
+
+                }
+
+                if (checkBoxAirFreshner.isChecked()&&checkBoxSteamCleam.isChecked()) {
+
+
+                    totalPrice = servicePrice+freshnerPrice+steamCleanPrice;
+
+                }
+                PriceTagtxt.setText(String.valueOf(totalPrice) + " Rs.");
 
             }
 
+
+
         });
+
+
         checkBoxSteamCleam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkBoxSteamCleam.isChecked()){
+
+                if (checkBoxSteamCleam.isChecked()) {
+
+                    totalPrice = servicePrice+steamCleanPrice;
+
+
+                }
+                if (!checkBoxSteamCleam.isChecked()) {
+
+
+                    totalPrice = servicePrice;
+                    PriceTagtxt.setText(String.valueOf(totalPrice) + " Rs.");
+
+
+                }
+                if ((!checkBoxAirFreshner.isChecked())&&checkBoxSteamCleam.isChecked()) {
+
+
                     totalPrice = servicePrice+steamCleanPrice;
                     PriceTagtxt.setText(String.valueOf(totalPrice) + " Rs.");
-                }
-                else if(!checkBoxAirFreshner.isChecked()){
 
-                    PriceTagtxt.setText(String.valueOf(value3) + " Rs.");
+
                 }
 
+                if ((!checkBoxSteamCleam.isChecked())&&checkBoxAirFreshner.isChecked()) {
 
+
+                    totalPrice = servicePrice+freshnerPrice;
+                    PriceTagtxt.setText(String.valueOf(totalPrice) + " Rs.");
+
+
+                }
+                if (checkBoxAirFreshner.isChecked()&&checkBoxSteamCleam.isChecked()) {
+
+
+                    totalPrice = servicePrice+freshnerPrice+steamCleanPrice;
+
+                }
+                PriceTagtxt.setText(String.valueOf(totalPrice) + " Rs.");
             }
+
         });
     }
 

@@ -161,7 +161,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
                     intent.putExtra("key","Auto Foam Car Wash and Detailing");
                     startActivity(intent);
                 }else if(actionId.equals("action_five")){
-                    intent.putExtra("key","Ali Nawaz");
+                    intent.putExtra("key","Ali Nawaz Car Wash");
                     startActivity(intent);
                 }
             }

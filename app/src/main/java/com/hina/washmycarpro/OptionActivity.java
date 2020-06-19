@@ -49,7 +49,6 @@ public class OptionActivity extends AppCompatActivity implements View.OnClickLis
         }
         TextView providertxt = findViewById(R.id.serviceProvidertxt);
         providertxt.setText(service);
-        String h = "hina";
 
 
     }
@@ -107,7 +106,7 @@ public class OptionActivity extends AppCompatActivity implements View.OnClickLis
                break;
            case R.id.btnPolish:
                intent = new Intent(OptionActivity.this, CreateOrderActivity.class);
-               intent.putExtra("ServiceDescription", "Polishing will eliminate surface scratches, swirls, oxidation, dirt and minor imperfections, Polish must use before Wax to restore auto paint for shining.");
+               intent.putExtra("ServiceDescription", "Polishing will eliminate surface scratches and dirt. Polish must use before Wax to restore paint for shining.");
                intent.putExtra("AboutService", "Polishing and Waxing");
                intent.putExtra("PriceTag","5000");
                startActivity(intent);
