@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class OptionActivity extends AppCompatActivity implements View.OnClickListener{
 
     Button btninsidewash, btndryclean, btnpremium, btnpolishing;
-    String service1,service2,service3,service4,service5;
+    String service;
 
 
     @Override
@@ -44,13 +45,10 @@ public class OptionActivity extends AppCompatActivity implements View.OnClickLis
         Bundle extras = getIntent().getExtras();
         if(extras!=null)
         {
-            service1= extras.getString("fahad");
-            service2 = extras.getString("luxury");
-            service3 = extras.getString("PSO");
-            service4 = extras.getString("autofoam");
-            service5 = extras.getString("alinawaz");
+            service= extras.getString("key");
         }
-        String h = "hina";
+        TextView providertxt = findViewById(R.id.serviceProvidertxt);
+        providertxt.setText(service);
 
 
     }

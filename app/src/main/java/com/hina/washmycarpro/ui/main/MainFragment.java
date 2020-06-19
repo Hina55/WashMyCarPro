@@ -149,23 +149,22 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
                 String actionId = markerMap.get(marker.getId());
 
                 if (actionId.equals("action_one")) {
-                    intent.putExtra("fahad","Fahad Car Wash");
+                    intent.putExtra("key","Fahad Car Wash");
                     startActivity(intent);
                 } else if (actionId.equals("action_two")) {
-                    intent.putExtra("luxury","Luxury Car Detailing");
+                    intent.putExtra("key","Luxury Car Detailing");
                     startActivity(intent);
                 } else if(actionId.equals("action_three")){
-                    intent.putExtra("PSO","PSO Car Wash");
+                    intent.putExtra("key","PSO Car Wash");
                     startActivity(intent);
                 } else if(actionId.equals("action_four")){
-                    intent.putExtra("autofoam","Auto Foam Car Wash and Detailing");
+                    intent.putExtra("key","Auto Foam Car Wash and Detailing");
                     startActivity(intent);
                 }else if(actionId.equals("action_five")){
-                    intent.putExtra("alinawaz","Ali Nawaz");
+                    intent.putExtra("key","Ali Nawaz");
                     startActivity(intent);
                 }
             }
-            String h = "hina";
         });
 
         /*for (int i=0; i<arrayList.size(); i++){
