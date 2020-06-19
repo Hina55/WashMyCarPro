@@ -27,10 +27,13 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.hina.washmycarpro.OptionActivity;
 import com.hina.washmycarpro.R;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainFragment extends Fragment implements OnMapReadyCallback {
 
@@ -45,11 +48,6 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
     LatLng AutoFoamCarWash = new LatLng(24.942523, 67.035608);
     LatLng AliNawazCarWash = new LatLng(24.874982, 67.045774);
     LatLng PSOCarWash = new LatLng(24.853240, 66.993997);
-
-
-
-
-
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -91,9 +89,85 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
 
         mGoogleMap = googleMap;
-        String[] locationName = {"Fahad Car Wash ","PSO Car Wash","Auto Foam Car Wash & Detailing","Ali Nawaz Car Wash","Luxury Car Detailing"};
+       // String[] locationName = {"Fahad Car Wash ","PSO Car Wash","Auto Foam Car Wash & Detailing","Ali Nawaz Car Wash","Luxury Car Detailing"};
 
-        for (int i=0; i<arrayList.size(); i++){
+
+        final HashMap<String, String> markerMap = new HashMap<String, String>();
+        Marker markerOne = mGoogleMap.addMarker(new MarkerOptions().position(FahadCarWash)
+                .title("Fahad Car Wash")
+                .snippet("Karachi City, Sindh, Pakistan")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.map_pointer_icon)));
+        String idOne = markerOne.getId();
+        markerMap.put(idOne, "action_one");
+        markerOne.showInfoWindow();
+
+        Marker markerTwo = mGoogleMap.addMarker(new MarkerOptions()
+                .position(LuxuryCarDetail)
+                .title("Luuxury Car Detailing")
+                .snippet("Karachi City, Sindh, Pakistan")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.map_pointer_icon)));
+        String idTwo = markerTwo.getId();
+        markerMap.put(idTwo, "action_two");
+        markerTwo.showInfoWindow();
+
+        Marker markerThree = mGoogleMap.addMarker(new MarkerOptions()
+                .position(PSOCarWash)
+                .title("PSO Car Wash")
+                .snippet("Karachi City, Sindh, Pakistan")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.map_pointer_icon)));
+        String idThree = markerThree.getId();
+        markerMap.put(idThree, "action_three");
+        markerThree.showInfoWindow();
+
+        Marker markerFour = mGoogleMap.addMarker(new MarkerOptions()
+                .position(AutoFoamCarWash)
+                .title("Auto Foam Car Wash and Detailing")
+                .snippet("Karachi City, Sindh, Pakistan")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.map_pointer_icon)));
+        String idFour = markerFour.getId();
+        markerMap.put(idFour, "action_four");
+        markerFour.showInfoWindow();
+
+        Marker markerFive = mGoogleMap.addMarker(new MarkerOptions()
+                .position(AliNawazCarWash)
+                .title("Ali Nawaz Car Wash")
+                .snippet("Karachi City, Sindh, Pakistan")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.map_pointer_icon)));
+        String idFive = markerFive.getId();
+        markerMap.put(idFive, "action_five");
+        markerFive.showInfoWindow();
+        markerTwo.showInfoWindow();
+
+        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(12f));
+        CameraPosition PSOwash = CameraPosition.builder().target(new LatLng(24.853240, 66.993997)).zoom(12f).bearing(0).tilt(45).build();
+        //mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(24.916369, 66.956950)));
+        mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(PSOwash));
+        mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                Intent intent = new Intent(getActivity(), OptionActivity.class);
+                String actionId = markerMap.get(marker.getId());
+
+                if (actionId.equals("action_one")) {
+                    intent.putExtra("fahad","Fahad Car Wash");
+                    startActivity(intent);
+                } else if (actionId.equals("action_two")) {
+                    intent.putExtra("luxury","Luxury Car Detailing");
+                    startActivity(intent);
+                } else if(actionId.equals("action_three")){
+                    intent.putExtra("PSO","PSO Car Wash");
+                    startActivity(intent);
+                } else if(actionId.equals("action_four")){
+                    intent.putExtra("autofoam","Auto Foam Car Wash and Detailing");
+                    startActivity(intent);
+                }else if(actionId.equals("action_five")){
+                    intent.putExtra("alinawaz","Ali Nawaz");
+                    startActivity(intent);
+                }
+            }
+        });
+
+        /*for (int i=0; i<arrayList.size(); i++){
 
             mGoogleMap.addMarker(new MarkerOptions()
                     .position(arrayList.get(i))
@@ -112,7 +186,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
                 }
             });
 
-        }
+        }*/
         mGoogleMap.getUiSettings().setMapToolbarEnabled(false);
         mGoogleMap.getUiSettings().setZoomControlsEnabled(true);
         mGoogleMap.getUiSettings().setMyLocationButtonEnabled(true);
