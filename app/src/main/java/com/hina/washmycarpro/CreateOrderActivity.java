@@ -108,7 +108,6 @@ public class CreateOrderActivity extends AppCompatActivity {
                     @Override
                     public void onVisibilityChanged(boolean isOpen) {
                         // some code depending on keyboard visiblity status
-
                         if(isOpen){
                             Log.d("TAG", "onVisibilityChanged: Keyboard is open ");
                             navigationlayout.setVisibility(View.INVISIBLE);
