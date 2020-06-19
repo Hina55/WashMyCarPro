@@ -6,8 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".OrderConfirmActivity">
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/abouttxt"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="hina"/>
+        android:text="About Service"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:textSize="18sp"
+        android:textColor="#313F8A"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/calibri"
+        android:textStyle="bold"
+        />
 
 </LinearLayout>
