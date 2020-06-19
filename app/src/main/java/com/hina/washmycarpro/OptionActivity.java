@@ -50,6 +50,7 @@ public class OptionActivity extends AppCompatActivity implements View.OnClickLis
             service4 = extras.getString("autofoam");
             service5 = extras.getString("alinawaz");
         }
+        String h = "hina";
 
 
     }

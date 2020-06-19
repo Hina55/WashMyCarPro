@@ -165,6 +165,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
                     startActivity(intent);
                 }
             }
+            String h = "hina";
         });
 
         /*for (int i=0; i<arrayList.size(); i++){
