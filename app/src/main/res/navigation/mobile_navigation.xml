@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_map">
+
+    <fragment
+        android:id="@+id/nav_map"
+        android:name="com.hina.washmycarpro.ui.main.MainFragment"
+        android:label="@string/menu_map"
+        tools:layout="@layout/fragment_main" />
+
+    <fragment
+        android:id="@+id/nav_account"
+        android:name="com.hina.washmycarpro.ui.account.AccountFragment"
+        android:label="@string/menu_account"
+        tools:layout="@layout/fragment_account" />
+
+    <fragment
+        android:id="@+id/nav_myOrders"
+        android:name="com.hina.washmycarpro.ui.order.OrdersFragment"
+        android:label="@string/menu_myOrders"
+        tools:layout="@layout/fragment_order" />
+
+    <fragment
+        android:id="@+id/nav_contact"
+        android:name="com.hina.washmycarpro.ui.contact.ContactFragment"
+        android:label="@string/menu_contact"
+        tools:layout="@layout/fragment_contact" />
+
+    <fragment
+        android:id="@+id/nav_share"
+        android:name="com.hina.washmycarpro.ui.share.ShareFragment"
+        android:label="@string/menu_share"
+        tools:layout="@layout/fragment_share" />
+
+</navigation>

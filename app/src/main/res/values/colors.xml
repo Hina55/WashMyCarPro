@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="textInputLayout">#96ffffff</color>
+    <color name="dateInputLayout">#96837E7E</color>
+    <color name="themecolor">#60CAD6</color>
+
+
+
+    <color name="headings">#3797CF</color>
+    <color name="solidCircle">#AAFFFFFF</color>
+    <color name="circleBorder">#50FFFFFF</color>
+    <color name="gradEnd">#34407C</color>
+    <color name="gradStart">#33B0C0</color>
+    <color name="grey">#E5E5E5</color>
+    <color name="white">#FFFFFF</color>
+    <color name="iconcolor">#080529</color>
+    <color name="toolbarcolor">#1F7FB8</color>
+    <color name="gradStartMenu">#2799DD</color>
+    <color name="gradEndMenu">#33B0C0</color>
+
+
+</resources>

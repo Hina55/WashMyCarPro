@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    tools:context=".CreateOrderActivity">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="80dp">
+
+    <TextView
+        android:id="@+id/abouttxt"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="About Service"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:textSize="18sp"
+        android:textColor="#313F8A"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/calibri"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/servicedesp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:textSize="16sp"
+        android:textColor="#313F8A"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/calibri"
+        android:paddingBottom="10dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+
+        android:layout_gravity="center_horizontal"
+        android:layout_height="2dp"
+        android:background="#66939797" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Preferred Time"
+        android:layout_marginTop="5dp"
+        android:gravity="left"
+        android:paddingLeft="25dp"/>
+
+
+    <EditText
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:textSize="14sp"
+        android:layout_margin="20dp"
+        android:background="@drawable/edit_text_border"
+        android:imeOptions="actionNext"
+        android:drawableLeft="@drawable/ic_access_time_black_24dp"
+        android:drawablePadding="12dp"
+        android:singleLine="true"
+        android:hint="Select Time"
+        android:paddingRight="20dp"
+        android:inputType="none"
+        android:focusable="false"
+        android:paddingLeft="20dp"
+        />
+    <EditText
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:textSize="14sp"
+        android:layout_margin="20dp"
+        android:drawableLeft="@drawable/ic_date_range_black_24dp"
+        android:drawablePadding="12dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/edit_text_border"
+        android:imeOptions="actionNext"
+        android:singleLine="true"
+        android:inputType="none"
+        android:focusable="false"
+        android:hint="Select Date"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="2dp"
+        android:background="#66939797" />
+
+    <RadioGroup
+        android:id="@+id/daily_weekly_button_view"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="100dp"
+            android:gravity="center"
+            android:layout_height="45dp"
+            android:background="@drawable/radio_flat_selector"
+            android:button="@android:color/transparent"
+            android:checked="true"
+            android:paddingLeft="16dp"
+            android:paddingTop="3dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="3dp"
+            android:text="Morning"
+            android:textColor="@drawable/radio_text_selected" />
+
+        <RadioButton
+            android:id="@+id/radio2"
+            android:gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="45dp"
+            android:background="@drawable/radio_flat_selector"
+            android:button="@android:color/transparent"
+            android:paddingLeft="16dp"
+            android:paddingTop="3dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="3dp"
+            android:text="Afternoon"
+            android:textColor="@drawable/radio_text_selected" />
+        <RadioButton
+            android:id="@+id/radio3"
+            android:gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="45dp"
+            android:background="@drawable/radio_flat_selector"
+            android:button="@android:color/transparent"
+            android:paddingLeft="16dp"
+            android:paddingTop="3dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="3dp"
+            android:text="Evening"
+            android:textColor="@drawable/radio_text_selected" />
+
+    </RadioGroup>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="2dp"
+        android:background="#66939797" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Extra Service"
+        android:gravity="left"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="25dp"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <CheckBox android:id="@+id/airFreshnerCheck"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Air Freshner"
+                android:theme="@style/BlueCheckBox"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="50 Rs."
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="0.2"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <CheckBox android:id="@+id/steamCleanCheck"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Steam Cleaning"
+            android:layout_weight="1"
+            android:theme="@style/BlueCheckBox"/>
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="500 Rs."
+            android:layout_weight="0.2"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="#66939797" />
+    <ImageButton
+        android:layout_gravity="center"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_arrow_forward_black_24dp"
+        android:background="@drawable/button_back_border"
+        />
+
+</LinearLayout>
+    </ScrollView>
+
+   <!-- <com.google.android.material.bottomnavigation.BottomNavigationView
+          android:id="@+id/bottomNavlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#1F7FB8"
+        android:layout_gravity="bottom"
+        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+        /> -->
+   <LinearLayout
+        android:id="@+id/bottomNavlayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:background="#1F7FB8"
+        android:layout_gravity="bottom"
+       android:gravity="center">
+       <TextView
+           android:id="@+id/pricetxt"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="5000 Rs."
+           android:layout_gravity="center"
+           android:gravity="center"
+           android:textColor="@android:color/white"
+           android:textStyle="bold"
+           android:textSize="16sp"
+           />
+   </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

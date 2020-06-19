@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "11494105526",
+    "firebase_url": "https://washmycarpro-8d011.firebaseio.com",
+    "project_id": "washmycarpro-8d011",
+    "storage_bucket": "washmycarpro-8d011.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11494105526:android:ff0be5d7ad2b3b50caa117",
+        "android_client_info": {
+          "package_name": "com.hina.washmycarpro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "11494105526-pvrl38bu98svi7t8c62gtgu635d2cluc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hina.washmycarpro",
+            "certificate_hash": "72941fd87dda66b8aee596a9c1381e6f9d25b54e"
+          }
+        },
+        {
+          "client_id": "11494105526-6seadl3eevvqelj5b5268i57boevfppj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1_VlBQfmcc6-LuHBPIKna1nJHDlepFSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "11494105526-6seadl3eevvqelj5b5268i57boevfppj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

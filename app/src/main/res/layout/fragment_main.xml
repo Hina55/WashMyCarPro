@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.gms.maps.MapView
+
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/map"/>
+
+    <LinearLayout
+        android:id="@+id/validity"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        android:gravity="left"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+
+        >
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="match_parent"
+        android:text="Select Car Wash Service Provider"
+        android:textColor="@android:color/white"
+        android:layout_gravity="left"
+        android:background="#66000000"
+        android:padding="7dp"
+        android:gravity="center"/>
+    </LinearLayout>
+
+
+</FrameLayout>
