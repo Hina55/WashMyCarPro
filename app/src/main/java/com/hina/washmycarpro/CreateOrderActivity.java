@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -32,11 +33,16 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.Source;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
@@ -45,6 +51,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.annotation.Nullable;
 
 public class CreateOrderActivity extends AppCompatActivity {
 
@@ -58,10 +66,11 @@ public class CreateOrderActivity extends AppCompatActivity {
     int totalPrice=0;
     int steamCleanPrice = 500;
     int freshnerPrice = 50;
-    ProgressBar progressBar;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
-    String userID,name,email;
+    String userID;
+    ProgressBar progressBar;
+
 
 
     @Override
@@ -71,6 +80,8 @@ public class CreateOrderActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1F7FB8")));
         getSupportActionBar().setTitle("Create Order");
+
+        progressBar = findViewById(R.id.progressbarorder);
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -279,9 +290,29 @@ public class CreateOrderActivity extends AppCompatActivity {
 
         final String finalServiceProviderName;
         final String finalServiceName;
-
+        final String[] email = new String[1];
+        final String[] name = new String[1];
         finalServiceProviderName = value4;
         finalServiceName = value2;
+
+
+        userID = fAuth.getCurrentUser().getUid();
+        final DocumentReference documentReference = fStore.collection("users").document(userID);
+        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    if (document != null && document.exists()) {
+                        String a = document.getString("Name");
+                        String b = document.getString("email");
+                        name[0] = a;
+                        email[0] = b;
+                    }
+
+                }
+            }
+        });
 
         ImageButton imgB=(ImageButton)findViewById(R.id.GOTOBook);
         imgB.setOnClickListener(new View.OnClickListener() {
@@ -313,40 +344,22 @@ public class CreateOrderActivity extends AppCompatActivity {
                             intent.putExtra("Date", finalDate[0]);
                             intent.putExtra("TotalPrice", finalTotalPrice[0]);
 
-                            userID = fAuth.getCurrentUser().getUid();
-
-                            email = "hina@gmail.com";
-                            name="hina";
-
-
-
-                            /*fStore.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if(task.isSuccessful()){
-
-                                    }
-                                }
-                            });
-*/
-
-                           // progressBar.setVisibility(View.VISIBLE);
-                            userID = fAuth.getCurrentUser().getUid();
-
 
                             Map<String,Object> order = new HashMap<>();
-                            order.put("Name",name);
-                            order.put("email",email);
+                            order.put("Name", name[0]);
+                            order.put("email", email[0]);
                             order.put("ServiceProvider",finalServiceProviderName);
                             order.put("ServiceOredred",finalServiceName);
                             order.put("Time",finalTime[0]);
                             order.put("Date",finalDate[0]);
                             order.put("Total Amount",finalTotalPrice[0]);
+                            progressBar.setVisibility(View.VISIBLE);
 
                             fStore.collection("orders").add(order).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
                                     Log.d("TAG", "onSuccess: Order is  Created for "+userID);
+
                                     startActivity(intent);
                                     finish();
                                 }
@@ -357,21 +370,23 @@ public class CreateOrderActivity extends AppCompatActivity {
                                 }
                             });
 
-
-
                         }
+
                     });
+
 
                     confirmOrderDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                                 // close the Dialog
                             //progressBar.setVisibility(View.INVISIBLE);
+                            dialog.cancel();
                         }
                     });
                     confirmOrderDialog.create().show();
 
                 }
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
 

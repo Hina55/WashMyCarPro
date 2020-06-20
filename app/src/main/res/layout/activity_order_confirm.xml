@@ -148,7 +148,7 @@
                     android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total: Rs/."
+                    android:text=""
                     android:layout_marginBottom="20dp"
                     android:layout_marginLeft="20dp"/>
 
