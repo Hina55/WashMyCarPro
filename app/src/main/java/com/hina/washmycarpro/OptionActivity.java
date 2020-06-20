@@ -88,6 +88,7 @@ public class OptionActivity extends AppCompatActivity implements View.OnClickLis
                intent.putExtra("ServiceDescription", "Wasing the Vehicle from outisde with foam gel and cleaning the inside with micro fibre and vaccum the dust.");
                intent.putExtra("AboutService", "Car Wash (Inside - Outside)");
                intent.putExtra("PriceTag","3000");
+               intent.putExtra("ServiceProvider",service);
                startActivity(intent);
                break;
            case R.id.btnDryClean:
@@ -95,6 +96,7 @@ public class OptionActivity extends AppCompatActivity implements View.OnClickLis
                intent.putExtra("ServiceDescription", "Interior and Exterior Detailing for Cleaning the inner the Parts of Vehicles.");
                intent.putExtra("AboutService", "Dry Clean Detailing");
                intent.putExtra("PriceTag","4200");
+               intent.putExtra("ServiceProvider",service);
                startActivity(intent);
                break;
            case R.id.btnPremium:
@@ -102,6 +104,7 @@ public class OptionActivity extends AppCompatActivity implements View.OnClickLis
                intent.putExtra("ServiceDescription", "Premium tire gloss gel, birilliant shine semi nano protection, anti bacteria for the AC.");
                intent.putExtra("AboutService", "Premium Car Wash");
                intent.putExtra("PriceTag","6000");
+               intent.putExtra("ServiceProvider",service);
                startActivity(intent);
                break;
            case R.id.btnPolish:
@@ -109,6 +112,7 @@ public class OptionActivity extends AppCompatActivity implements View.OnClickLis
                intent.putExtra("ServiceDescription", "Polishing will eliminate surface scratches and dirt. Polish must use before Wax to restore paint for shining.");
                intent.putExtra("AboutService", "Polishing and Waxing");
                intent.putExtra("PriceTag","5000");
+               intent.putExtra("ServiceProvider",service);
                startActivity(intent);
                break;
        }

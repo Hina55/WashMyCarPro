@@ -30,6 +30,19 @@
         android:fontFamily="@font/calibri"
         android:textStyle="bold"
         />
+    <TextView
+        android:id="@+id/serviceProviderNametxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:textSize="13sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/calibri"
+        android:textStyle="bold"
+        />
 
     <TextView
         android:id="@+id/servicedesp"
@@ -162,7 +175,6 @@
         android:layout_width="match_parent"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:layout_height="2dp"
         android:background="#66939797" />
@@ -211,6 +223,7 @@
             android:layout_height="wrap_content"
             android:text="Steam Cleaning"
             android:layout_weight="1"
+
             android:theme="@style/BlueCheckBox"/>
         <TextView
                 android:layout_width="0dp"
@@ -219,6 +232,7 @@
             android:layout_weight="0.2"
                 android:layout_gravity="center"
                 android:gravity="center"
+
                 />
         </LinearLayout>
     </LinearLayout>

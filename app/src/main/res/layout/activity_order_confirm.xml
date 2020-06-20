@@ -31,6 +31,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/cardbackgroundtheme">
+            <TextView
+                android:id="@+id/ServiceProvider"
+                android:textSize="15dp"
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Service Provider"
+                android:textColor="@android:color/black"
+                android:layout_toRightOf="@id/date"
+                android:layout_gravity="center"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginRight="110dp"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="2dp"
+                android:background="#66939797" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -41,6 +59,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -48,7 +67,8 @@
                     android:textColor="@android:color/black"
                     android:layout_marginLeft="40dp"
                     android:textSize="15dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="20dp"
+
                     />
 
 
@@ -76,28 +96,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Service"
                         android:textColor="@android:color/black"
-                        android:layout_marginLeft="40dp"
+                        android:layout_marginLeft="25dp"
                         android:textSize="15dp"
-                        android:layout_marginTop="40dp"
-                        android:id="@+id/servicetxt"/>
+                        android:layout_marginTop="20dp"
+                        android:id="@+id/serviceNametext"/>
 
 
                     <TextView
-                        android:id="@+id/On"
+                        android:id="@+id/timetext"
                         android:textSize="15dp"
                         android:layout_marginTop="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="On"
-                        android:layout_marginLeft="40dp"
+                        android:layout_marginLeft="25dp"
                         android:textColor="@android:color/black"/>
                     <TextView
-                        android:id="@+id/When"
+                        android:id="@+id/datetext"
                         android:textSize="15dp"
                         android:layout_marginTop="20dp"
                         android:layout_width="wrap_content"
@@ -105,7 +126,8 @@
                         android:text="When"
                         android:textColor="@android:color/black"
                         android:layout_toRightOf="@id/date"
-                        android:layout_marginLeft="40dp"/>
+                        android:layout_marginLeft="25dp"/>
+
 
                 </LinearLayout>
             </LinearLayout>
@@ -136,7 +158,7 @@
                     android:text="Price"
                     android:textSize="16dp"
                     android:textColor="@android:color/black"
-                    android:id="@+id/Price"
+                    android:id="@+id/totalPricetext"
                     android:layout_marginTop="20dp"
                     android:layout_toRightOf="@+id/Total"
                     android:layout_marginLeft="20dp"
@@ -152,7 +174,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/calibri"
         android:layout_marginBottom="40dp">
 
@@ -198,11 +220,11 @@
 
 
         <Button
-            android:padding="8dp"
+            android:padding="6dp"
             android:layout_width="170dp"
-            android:layout_height="57dp"
-            android:layout_marginTop="40dp"
-            android:id="@+id/btnDryClean"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/btnHome"
             android:text="Back to Home"
             android:fontFamily="@font/calibri"
             android:textAllCaps="false"

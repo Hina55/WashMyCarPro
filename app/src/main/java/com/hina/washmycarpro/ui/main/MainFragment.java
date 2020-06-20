@@ -166,7 +166,6 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
                 }
             }
         });
-String h ="hina";
         /*for (int i=0; i<arrayList.size(); i++){
 
             mGoogleMap.addMarker(new MarkerOptions()
