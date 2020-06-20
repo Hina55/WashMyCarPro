@@ -85,7 +85,7 @@ public class OptionActivity extends AppCompatActivity implements View.OnClickLis
        switch (v.getId()){
            case R.id.btnWashInside:
                intent = new Intent(OptionActivity.this, CreateOrderActivity.class);
-               intent.putExtra("ServiceDescription", "Wasing the Vehicle from outisde with foam gel and cleaning the inside with micro fibre and vaccum the dust.");
+               intent.putExtra("ServiceDescription", "Washing the Vehicle from outisde with foam gel and cleaning the inside with micro fibre and vaccum the dust.");
                intent.putExtra("AboutService", "Car Wash (Inside - Outside)");
                intent.putExtra("PriceTag","3000");
                intent.putExtra("ServiceProvider",service);
