@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +21,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseAuth;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
@@ -255,26 +258,32 @@ public class CreateOrderActivity extends AppCompatActivity {
         final String finalServiceProviderName;
         final String finalServiceName;
 
-
-
         finalServiceProviderName = value4;
         finalServiceName = value2;
-
-
-
 
         ImageButton imgB=(ImageButton)findViewById(R.id.GOTOBook);
         imgB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateOrderActivity.this,OrderConfirmActivity.class);
-                intent.putExtra("ProviderName",finalServiceProviderName);
-                intent.putExtra("ServiceName",finalServiceName);
-                intent.putExtra("Time", finalTime[0]);
-                intent.putExtra("Date", finalDate[0]);
-                intent.putExtra("TotalPrice", finalTotalPrice[0]);
-                startActivity(intent);
-                finish();
+
+                if(TextUtils.isEmpty(finalTime[0])){
+                    Toast.makeText(CreateOrderActivity.this, "Please Specify Your Preffered Time", Toast.LENGTH_SHORT).show();
+                } else if(TextUtils.isEmpty(finalDate[0])){
+                    Toast.makeText(CreateOrderActivity.this, "Please Select Suitable Date", Toast.LENGTH_SHORT).show();
+                }
+                else if(TextUtils.isEmpty(finalTime[0]) && TextUtils.isEmpty(finalDate[0])){
+                    Toast.makeText(CreateOrderActivity.this, "Please Specify Your Preffered Time and Date", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent = new Intent(CreateOrderActivity.this, OrderConfirmActivity.class);
+                    intent.putExtra("ProviderName", finalServiceProviderName);
+                    intent.putExtra("ServiceName", finalServiceName);
+                    intent.putExtra("Time", finalTime[0]);
+                    intent.putExtra("Date", finalDate[0]);
+                    intent.putExtra("TotalPrice", finalTotalPrice[0]);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 
