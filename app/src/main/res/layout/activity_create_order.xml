@@ -57,7 +57,12 @@
         android:fontFamily="@font/calibri"
         android:paddingBottom="10dp"
         />
+<!--change-->
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fareena"/>
     <View
         android:layout_width="match_parent"
         android:layout_marginRight="20dp"
