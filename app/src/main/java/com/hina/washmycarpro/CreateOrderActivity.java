@@ -2,15 +2,20 @@ package com.hina.washmycarpro;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -33,26 +38,35 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.Source;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.hina.washmycarpro.network.NotificationReqHelper;
+import com.hina.washmycarpro.network.NotificationRequest;
+import com.hina.washmycarpro.network.NotificationResponse;
+import com.hina.washmycarpro.network.RetrofitClient;
+
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Nullable;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class CreateOrderActivity extends AppCompatActivity {
 
@@ -70,6 +84,15 @@ public class CreateOrderActivity extends AppCompatActivity {
     FirebaseFirestore fStore;
     String userID;
     ProgressBar progressBar;
+
+    //1.notification channel
+    //2.notification builder
+    //3.notification manager
+
+    /*public static  final String CHANNEL_ID ="hina123";
+    private static  final String CHANNEL_NAME ="WashMyCAr";
+    private  static  final String CHANNEL_DESCRIPTION= "WashMYCar Notification";*/
+
 
 
 
@@ -334,6 +357,8 @@ public class CreateOrderActivity extends AppCompatActivity {
                     confirmOrderDialog.setMessage("Select Yes to Confirm your Car Wash Booking Service.");
 
 
+
+
                     confirmOrderDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -361,6 +386,12 @@ public class CreateOrderActivity extends AppCompatActivity {
                                     Log.d("TAG", "onSuccess: Order is  Created for "+userID);
 
                                     startActivity(intent);
+
+                                    sendbyRest();
+
+
+                                    //displayNotification();
+
                                     finish();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -375,11 +406,11 @@ public class CreateOrderActivity extends AppCompatActivity {
                     });
 
 
+
                     confirmOrderDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                                 // close the Dialog
-                            //progressBar.setVisibility(View.INVISIBLE);
                             dialog.cancel();
                         }
                     });
@@ -391,6 +422,52 @@ public class CreateOrderActivity extends AppCompatActivity {
         });
 
     }
+
+    public void sendbyRest(){
+
+        final String title = "hina";
+        final String text ="Notification check";
+        FirebaseDatabase.getInstance().getReference()
+                .child("users")
+                .child("tYDMKNWJf4bzcQ04L9DIS9GdPBx2")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    private static final String BASE_URL = "https://fcm.googleapis.com/";
+
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        NotificationReqHelper req = new NotificationReqHelper(
+                                dataSnapshot.child("token").getValue().toString(),
+                                new NotificationReqHelper.Notification(title,text)
+                        );
+
+                        RetrofitClient.getRetrofit(BASE_URL)
+                                .create(NotificationRequest.class)
+                                .send(req)
+                                .enqueue(new Callback<NotificationResponse>() {
+                                    @Override
+                                    public void onResponse(Call<NotificationResponse> call, Response<NotificationResponse> response) {
+                                        if(response.code() == 200){
+                                            Toast.makeText(CreateOrderActivity.this, "sent", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<NotificationResponse> call, Throwable t) {
+                                        Toast.makeText(CreateOrderActivity.this, "Fail", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+
+
 
     @Override
     public boolean onSupportNavigateUp() {

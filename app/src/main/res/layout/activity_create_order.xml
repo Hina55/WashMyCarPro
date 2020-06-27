@@ -57,12 +57,14 @@
         android:fontFamily="@font/calibri"
         android:paddingBottom="10dp"
         />
-<!--change-->
-
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fareena"/>
+        android:text="tokentext"
+        android:id="@+id/tokentxt"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
     <View
         android:layout_width="match_parent"
         android:layout_marginRight="20dp"

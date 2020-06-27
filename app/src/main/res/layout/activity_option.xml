@@ -41,6 +41,22 @@
             android:layout_width="250dp"
             android:layout_height="65dp"
             android:layout_marginTop="20dp"
+            android:id="@+id/checkactivity"
+            android:text="check list"
+
+            android:fontFamily="@font/calibri"
+            android:textAllCaps="false"
+            android:textColor="#141516"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:background="@drawable/buttonbackgroundstyle"
+
+            />
+        <Button
+            android:padding="10dp"
+            android:layout_width="250dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="20dp"
             android:id="@+id/btnWashInside"
             android:text="Car Wash (Inside - Outside)"
             android:drawableLeft="@drawable/ic_local_car_wash_black_24dp"

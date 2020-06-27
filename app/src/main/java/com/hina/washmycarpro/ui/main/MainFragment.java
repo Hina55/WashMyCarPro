@@ -28,6 +28,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.hina.washmycarpro.OptionActivity;
 import com.hina.washmycarpro.R;
@@ -153,6 +154,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
                     startActivity(intent);
                 } else if (actionId.equals("action_two")) {
                     intent.putExtra("key","Luxury Car Detailing");
+
                     startActivity(intent);
                 } else if(actionId.equals("action_three")){
                     intent.putExtra("key","PSO Car Wash");
