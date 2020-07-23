@@ -23,6 +23,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 public class LoginActivity extends Activity {
 
@@ -83,6 +87,21 @@ public class LoginActivity extends Activity {
                             Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
                             var=-1;
                             startActivity(new Intent(getApplicationContext(),UserActivity.class));
+
+
+
+                            FirebaseInstanceId.getInstance().getInstanceId()
+                                    .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                                            if(task.isSuccessful()){
+                                                String token = task.getResult().getToken();
+                                                saveToken(token);
+                                            }else{
+
+                                            }
+                                        }
+                                    });
 
                         }else{
                             Toast.makeText(LoginActivity.this, "Error!", Toast.LENGTH_SHORT).show();
@@ -145,6 +164,23 @@ public class LoginActivity extends Activity {
             }
         });
     }
+
+    private void saveToken(String token){
+        String uemail = fAuth.getCurrentUser().getEmail();
+        User user = new User(uemail,token);
+
+        DatabaseReference dbUsers = FirebaseDatabase.getInstance().getReference("users");
+        dbUsers.child(fAuth.getCurrentUser().getUid())
+                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(LoginActivity.this, "Token Saved", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
     @Override
     protected void onStart() {
         super.onStart();

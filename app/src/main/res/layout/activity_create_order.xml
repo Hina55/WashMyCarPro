@@ -26,14 +26,27 @@
         android:gravity="center_horizontal"
         android:textSize="18sp"
         android:textColor="#313F8A"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/calibri"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/serviceProviderNametxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:textSize="13sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="3dp"
         android:fontFamily="@font/calibri"
         android:textStyle="bold"
         />
 
     <TextView
         android:id="@+id/servicedesp"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text=""
         android:layout_gravity="center"
@@ -44,6 +57,13 @@
         android:fontFamily="@font/calibri"
         android:paddingBottom="10dp"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tokentext"
+        android:id="@+id/tokentxt"
+        android:layout_gravity="center"
+        android:gravity="center"/>
 
     <View
         android:layout_width="match_parent"
@@ -97,16 +117,9 @@
         android:focusable="false"
         android:hint="Select Date"
         />
-    <View
-        android:layout_width="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="2dp"
-        android:background="#66939797" />
 
-    <RadioGroup
+
+    <!--<RadioGroup
         android:id="@+id/daily_weekly_button_view"
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -162,14 +175,13 @@
             android:text="Evening"
             android:textColor="@drawable/radio_text_selected" />
 
-    </RadioGroup>
+    </RadioGroup>-->
 
 
     <View
         android:layout_width="match_parent"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:layout_height="2dp"
         android:background="#66939797" />
@@ -218,6 +230,7 @@
             android:layout_height="wrap_content"
             android:text="Steam Cleaning"
             android:layout_weight="1"
+
             android:theme="@style/BlueCheckBox"/>
         <TextView
                 android:layout_width="0dp"
@@ -226,6 +239,7 @@
             android:layout_weight="0.2"
                 android:layout_gravity="center"
                 android:gravity="center"
+
                 />
         </LinearLayout>
     </LinearLayout>
@@ -238,6 +252,7 @@
         android:layout_marginTop="10dp"
         android:background="#66939797" />
     <ImageButton
+        android:id="@+id/GOTOBook"
         android:layout_gravity="center"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -247,6 +262,7 @@
         />
 
 </LinearLayout>
+
     </ScrollView>
 
    <!-- <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -262,20 +278,30 @@
         android:id="@+id/bottomNavlayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:background="#1F7FB8"
         android:layout_gravity="bottom"
        android:gravity="center">
+       <ProgressBar
+           android:id="@+id/progressbarorder"
+           android:layout_width="0dp"
+           android:layout_weight="0.5"
+           android:layout_height="30dp"
+           android:layout_gravity="center"
+           android:visibility="invisible" />
        <TextView
            android:id="@+id/pricetxt"
-           android:layout_width="match_parent"
+           android:layout_width="0dp"
            android:layout_height="wrap_content"
-           android:text="5000 Rs."
+           android:layout_weight="1"
+           android:text="Total Amount: 5000 Rs."
            android:layout_gravity="center"
-           android:gravity="center"
+           android:gravity="right"
+           android:paddingRight="15dp"
            android:textColor="@android:color/white"
            android:textStyle="bold"
            android:textSize="16sp"
            />
    </LinearLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,6 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class OptionActivity extends AppCompatActivity implements View.OnClickListener{
 
     Button btninsidewash, btndryclean, btnpremium, btnpolishing;
+    String service;
+    Button btncheck;
 
 
     @Override
@@ -28,6 +31,15 @@ public class OptionActivity extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1F7FB8")));
         getSupportActionBar().setTitle("Services");
+
+        btncheck = findViewById(R.id.checkactivity);
+
+        btncheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),CheckActivity.class));
+            }
+        });
 
         btninsidewash = findViewById(R.id.btnWashInside);
         btndryclean = findViewById(R.id.btnDryClean);
@@ -40,7 +52,18 @@ public class OptionActivity extends AppCompatActivity implements View.OnClickLis
         btnpolishing.setOnClickListener(this);
 
 
+        Bundle extras = getIntent().getExtras();
+        if(extras!=null)
+        {
+            service= extras.getString("key");
+        }
+        TextView providertxt = findViewById(R.id.serviceProvidertxt);
+        providertxt.setText(service);
+
+
     }
+
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -72,9 +95,10 @@ public class OptionActivity extends AppCompatActivity implements View.OnClickLis
        switch (v.getId()){
            case R.id.btnWashInside:
                intent = new Intent(OptionActivity.this, CreateOrderActivity.class);
-               intent.putExtra("ServiceDescription", "Wasing the Vehicle from outisde with foam gel and cleaning the inside with micro fibre and vaccum the dust.");
+               intent.putExtra("ServiceDescription", "Washing the Vehicle from outisde with foam gel and cleaning the inside with micro fibre and vaccum the dust.");
                intent.putExtra("AboutService", "Car Wash (Inside - Outside)");
                intent.putExtra("PriceTag","3000");
+               intent.putExtra("ServiceProvider",service);
                startActivity(intent);
                break;
            case R.id.btnDryClean:
@@ -82,6 +106,7 @@ public class OptionActivity extends AppCompatActivity implements View.OnClickLis
                intent.putExtra("ServiceDescription", "Interior and Exterior Detailing for Cleaning the inner the Parts of Vehicles.");
                intent.putExtra("AboutService", "Dry Clean Detailing");
                intent.putExtra("PriceTag","4200");
+               intent.putExtra("ServiceProvider",service);
                startActivity(intent);
                break;
            case R.id.btnPremium:
@@ -89,13 +114,15 @@ public class OptionActivity extends AppCompatActivity implements View.OnClickLis
                intent.putExtra("ServiceDescription", "Premium tire gloss gel, birilliant shine semi nano protection, anti bacteria for the AC.");
                intent.putExtra("AboutService", "Premium Car Wash");
                intent.putExtra("PriceTag","6000");
+               intent.putExtra("ServiceProvider",service);
                startActivity(intent);
                break;
            case R.id.btnPolish:
                intent = new Intent(OptionActivity.this, CreateOrderActivity.class);
-               intent.putExtra("ServiceDescription", "Polishing will eliminate surface scratches, swirls, oxidation, dirt and minor imperfections, Polish must use before Wax to restore auto paint for shining.");
+               intent.putExtra("ServiceDescription", "Polishing will eliminate surface scratches and dirt. Polish must use before Wax to restore paint for shining.");
                intent.putExtra("AboutService", "Polishing and Waxing");
                intent.putExtra("PriceTag","5000");
+               intent.putExtra("ServiceProvider",service);
                startActivity(intent);
                break;
        }
