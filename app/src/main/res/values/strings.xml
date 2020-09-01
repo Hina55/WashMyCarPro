@@ -17,4 +17,5 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_option_fragment">Hello option fragment</string>
+    <string name="no_orders_yet">No Orders Yet!</string>
 </resources>
