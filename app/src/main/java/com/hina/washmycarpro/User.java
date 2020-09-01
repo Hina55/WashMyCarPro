@@ -8,7 +8,8 @@ public class User {
     public User(){
     }
 
-    public User(String useremail, String token) {
+    public User(String useremail, String token)
+    {
         this.useremail = useremail;
         this.token = token;
     }

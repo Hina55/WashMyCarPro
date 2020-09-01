@@ -74,7 +74,8 @@ public class LoginActivity extends Activity {
                     mPassword.setError("Password is Required");
                     return;
                 }
-                if(password.length() < 6){
+                if(password.length() < 6)
+                {
                     mPassword.setError("Password Must be >= 6 Characters ");
                 }
 
@@ -101,7 +102,8 @@ public class LoginActivity extends Activity {
 
 
                             FirebaseInstanceId.getInstance().getInstanceId()
-                                    .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                                    .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>()
+                                    {
                                         @Override
                                         public void onComplete(@NonNull Task<InstanceIdResult> task) {
                                             if(task.isSuccessful()){

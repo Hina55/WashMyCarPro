@@ -59,7 +59,8 @@ public class RegisterActivity extends Activity {
         }
 
 
-        mRegisterButton.setOnClickListener(new View.OnClickListener() {
+        mRegisterButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(final View v) {
                 final String email = mEmail.getText().toString().trim();
