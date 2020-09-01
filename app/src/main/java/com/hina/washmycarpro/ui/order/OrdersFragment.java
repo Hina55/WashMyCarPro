@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,9 +28,7 @@ import com.hina.washmycarpro.ui.account.UserProfile;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 public class OrdersFragment extends Fragment {
-
 
     FirebaseFirestore firestore;
     List<Order> orderList;
@@ -72,7 +69,6 @@ public class OrdersFragment extends Fragment {
 
                          email = document.getString("email");
                     }
-
                 }
 
             }
