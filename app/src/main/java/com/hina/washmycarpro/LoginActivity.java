@@ -90,20 +90,7 @@ public class LoginActivity extends Activity {
                             Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
                             var=-1;
 
-
-                            if (mEmail.getText().toString().equals("fahadcarwash@gmail.com"))
-                            {
-                                startActivity(new Intent(getApplicationContext(),ServiceProviderActivity.class));
-                            }
-
-                            if(mEmail.getText().toString().equals("fareenaimran555@gmail.com"))
-                            {
                                 startActivity(new Intent(getApplicationContext(),UserActivity.class));
-                            }
-
-
-
-
 
                             FirebaseInstanceId.getInstance().getInstanceId()
                                     .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>()

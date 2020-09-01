@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -37,7 +39,9 @@ public class ServiceProviderActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_provider);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1F7FB8")));
+        getSupportActionBar().setTitle("Service Provider");
         firestore = FirebaseFirestore.getInstance();
         orderList = new ArrayList<>();
         orderRecyclerViewList = findViewById(R.id.notificationList);
@@ -46,6 +50,7 @@ public class ServiceProviderActivity extends AppCompatActivity {
         adapter = new notificationListAdapter();
         orderRecyclerViewList.setAdapter(adapter);
 
+        
 
         firestore.collection("orders").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -57,7 +62,6 @@ public class ServiceProviderActivity extends AppCompatActivity {
 
                     for (QueryDocumentSnapshot documentSnapshot : Objects.requireNonNull(task.getResult())) {
                         Order order = new Order();
-
                             order.setDate(documentSnapshot.getString("Date"));
                             order.setName(documentSnapshot.getString("Name"));
                             order.setServiceOrder(documentSnapshot.getString("ServiceOrdered"));
@@ -66,8 +70,6 @@ public class ServiceProviderActivity extends AppCompatActivity {
                             order.setTotalAmount(documentSnapshot.getString("Total Amount"));
                             order.setEmail(documentSnapshot.getString("email"));
                             orderList.add(order);
-
-
                     }
                     adapter.addItem(orderList);
                 } else {
@@ -76,7 +78,10 @@ public class ServiceProviderActivity extends AppCompatActivity {
                 }
             }
         });
-
-
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
