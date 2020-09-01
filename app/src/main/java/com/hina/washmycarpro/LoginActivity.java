@@ -91,9 +91,11 @@ public class LoginActivity extends Activity {
                             var=-1;
 
 
-                            if (mEmail.getText().toString().equals("fahadcarwash@gmail.com")){
+                            if (mEmail.getText().toString().equals("fahadcarwash@gmail.com"))
+                            {
                                 startActivity(new Intent(getApplicationContext(),ServiceProviderActivity.class));
                             }
+
                             if(mEmail.getText().toString().equals("fareenaimran555@gmail.com"))
                             {
                                 startActivity(new Intent(getApplicationContext(),UserActivity.class));
