@@ -11,7 +11,7 @@
     <string name="menu_account">Account</string>
     <string name="menu_map">Service Providers</string>
     <string name="menu_myOrders">My Orders</string>
-    <string name="menu_contact">Contact us</string>
+    <string name="menu_about">About Us</string>
     <string name="menu_share">Share</string>
     <string name="menu_logout">Logout</string>
 

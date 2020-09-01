@@ -8,12 +8,20 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.hina.washmycarpro.R;
+import com.hina.washmycarpro.adapter.OrderListRecyclerViewAdapter;
+
+import java.util.ArrayList;
+
 public class ContactFragment extends Fragment {
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        return null;
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_contact, container, false);
+
+        return view;
     }
 }
