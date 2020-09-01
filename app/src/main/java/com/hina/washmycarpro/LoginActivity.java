@@ -39,7 +39,6 @@ public class LoginActivity extends Activity {
     ProgressBar progressBar;
     FirebaseAuth fAuth;
     int var;
-    String emailuser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,25 +89,14 @@ public class LoginActivity extends Activity {
                             Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
                             var=-1;
 
-                            FirebaseFirestore db = FirebaseFirestore.getInstance();
-                            String userId = fAuth.getCurrentUser().getUid();
-                            DocumentReference docRef = db.collection("users").document(userId);
-                            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                                    if(task.isSuccessful()){
-                                        DocumentSnapshot document = task.getResult();
-                                        if (document != null && document.exists()) {
-
-                                           emailuser = document.getString("email");
-                                        }
-                                    }
-
-                                }
-                            });
-
+                            if (mEmail.getText().equals("fahadcarwash@gmail.com")){
+                                startActivity(new Intent(getApplicationContext(),ServiceProviderActivity.class));
+                            }else{
                                 startActivity(new Intent(getApplicationContext(),UserActivity.class));
+                            }
+
+
 
 
 
