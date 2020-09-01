@@ -25,6 +25,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
@@ -36,7 +39,6 @@ public class LoginActivity extends Activity {
     ProgressBar progressBar;
     FirebaseAuth fAuth;
     int var;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +89,15 @@ public class LoginActivity extends Activity {
                         if(task.isSuccessful()){
                             Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
                             var=-1;
-                            startActivity(new Intent(getApplicationContext(),UserActivity.class));
+
+
+                            if (mEmail.getText().equals("fahadcarwash@gmail.com")){
+                                startActivity(new Intent(getApplicationContext(),ServiceProviderActivity.class));
+                            }else{
+                                startActivity(new Intent(getApplicationContext(),UserActivity.class));
+                            }
+
+
 
 
 

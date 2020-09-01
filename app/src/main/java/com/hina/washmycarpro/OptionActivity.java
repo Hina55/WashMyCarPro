@@ -21,7 +21,6 @@ public class OptionActivity extends AppCompatActivity implements View.OnClickLis
 
     Button btninsidewash, btndryclean, btnpremium, btnpolishing;
     String service;
-    Button btncheck;
 
 
     @Override
@@ -32,14 +31,6 @@ public class OptionActivity extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1F7FB8")));
         getSupportActionBar().setTitle("Services");
 
-        btncheck = findViewById(R.id.checkactivity);
-
-        btncheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),CheckActivity.class));
-            }
-        });
 
         btninsidewash = findViewById(R.id.btnWashInside);
         btndryclean = findViewById(R.id.btnDryClean);

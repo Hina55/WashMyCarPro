@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CheckActivity"></activity>
+        <activity android:name=".ServiceProviderActivity"></activity>
+        <activity android:name=".CheckActivity" />
         <activity android:name=".OrderConfirmActivity" />
         <activity
             android:name=".CreateOrderActivity"
