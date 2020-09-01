@@ -13,7 +13,11 @@
         android:layout_height="wrap_content"
         android:text="hina"
         android:id="@+id/checktext"/>
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hina"
+        android:id="@+id/checktet"/>
 
 
 
