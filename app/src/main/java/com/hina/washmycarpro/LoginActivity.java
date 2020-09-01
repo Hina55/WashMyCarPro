@@ -90,7 +90,7 @@ public class LoginActivity extends Activity {
                             var=-1;
 
 
-                            if (mEmail.getText().equals("fahadcarwash@gmail.com")){
+                            if (mEmail.getText().toString().equals("fahadcarwash@gmail.com")){
                                 startActivity(new Intent(getApplicationContext(),ServiceProviderActivity.class));
                             }else{
                                 startActivity(new Intent(getApplicationContext(),UserActivity.class));

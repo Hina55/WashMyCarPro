@@ -12,11 +12,11 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/orderList"
+            android:id="@+id/notificationList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_order_list" />
+            tools:listitem="@layout/item_notification_list" />
 
         <TextView
             android:id="@+id/noOrderPlaceHolder"
