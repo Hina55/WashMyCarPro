@@ -94,7 +94,7 @@ public class UserActivity extends AppCompatActivity  {
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_account, R.id.nav_map, R.id.nav_myOrders,
-                R.id.nav_contact, R.id.nav_share, R.id.nav_logout)
+                R.id.nav_contact, R.id.nav_logout)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
