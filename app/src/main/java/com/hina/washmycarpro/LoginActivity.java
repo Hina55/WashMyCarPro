@@ -90,7 +90,7 @@ public class LoginActivity extends Activity {
                             Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
                             var=-1;
 
-                                startActivity(new Intent(getApplicationContext(),UserActivity.class));
+                            startActivity(new Intent(getApplicationContext(),UserActivity.class));
 
                             FirebaseInstanceId.getInstance().getInstanceId()
                                     .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>()

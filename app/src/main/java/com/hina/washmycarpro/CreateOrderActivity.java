@@ -428,7 +428,7 @@ public class CreateOrderActivity extends AppCompatActivity {
         final String text ="Notification check";
         FirebaseDatabase.getInstance().getReference()
                 .child("users")
-                .child("tYDMKNWJf4bzcQ04L9DIS9GdPBx2")
+                .child("CwJA2M7eOTTPNpw8dLQIZXZRJYj1")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     private static final String BASE_URL = "https://fcm.googleapis.com/";
 
@@ -452,7 +452,7 @@ public class CreateOrderActivity extends AppCompatActivity {
 
                                     @Override
                                     public void onFailure(Call<NotificationResponse> call, Throwable t) {
-                                        Toast.makeText(CreateOrderActivity.this, "Fail", Toast.LENGTH_SHORT).show();
+                                       // Toast.makeText(CreateOrderActivity.this, "Fail", Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
