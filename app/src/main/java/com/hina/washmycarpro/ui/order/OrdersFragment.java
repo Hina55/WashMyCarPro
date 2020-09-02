@@ -99,8 +99,6 @@ public class OrdersFragment extends Fragment {
                             order.setTotalAmount(documentSnapshot.getString("Total Amount"));
                             order.setEmail(documentSnapshot.getString("email"));
                             orderList.add(order);
-                        }else{
-                            placeHolderTextView.setVisibility(View.VISIBLE);
                         }
                     }
                     adapter.addItem(orderList);
