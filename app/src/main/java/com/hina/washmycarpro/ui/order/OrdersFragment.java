@@ -1,9 +1,11 @@
 package com.hina.washmycarpro.ui.order;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.hina.washmycarpro.R;
+import com.hina.washmycarpro.ServiceProviderActivity;
 import com.hina.washmycarpro.adapter.OrderListRecyclerViewAdapter;
 import com.hina.washmycarpro.model.Order;
 import com.hina.washmycarpro.ui.account.UserProfile;
@@ -49,6 +52,9 @@ public class OrdersFragment extends Fragment {
         placeHolderTextView = view.findViewById(R.id.noOrderPlaceHolder);
         adapter = new OrderListRecyclerViewAdapter();
         orderRecyclerViewList.setAdapter(adapter);
+
+
+
         return view;
     }
 
@@ -87,14 +93,15 @@ public class OrdersFragment extends Fragment {
                         if(documentSnapshot.getString("email").equals(email)){
                             order.setDate(documentSnapshot.getString("Date"));
                             order.setName(documentSnapshot.getString("Name"));
-                            order.setServiceOrder(documentSnapshot.getString("ServiceOrdered"));
+                            order.setServiceOrdered(documentSnapshot.getString("ServiceOrdered"));
                             order.setServiceProvider(documentSnapshot.getString("ServiceProvider"));
                             order.setTime(documentSnapshot.getString("Time"));
                             order.setTotalAmount(documentSnapshot.getString("Total Amount"));
                             order.setEmail(documentSnapshot.getString("email"));
                             orderList.add(order);
+                        }else{
+                            placeHolderTextView.setVisibility(View.VISIBLE);
                         }
-
                     }
                     adapter.addItem(orderList);
                 } else {

@@ -2,11 +2,11 @@ package com.hina.washmycarpro.model;
 
 public class Order {
 
-    String date;
-    String name;
-    String serviceOrder;
+    String Date;
+    String Name;
+    String ServiceOrdered;
     String serviceProvider;
-    String time;
+    String Time;
     String totalAmount;
     String email;
 
@@ -14,29 +14,29 @@ public class Order {
     }
 
     public String getDate() {
-        return date;
+        return Date;
 
     }
 
-    public void setDate(String date) {
+    public void setDate(String Date) {
 
-        this.date = date;
+        this.Date = Date;
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
-    public String getServiceOrder() {
-        return serviceOrder;
+    public String getServiceOrdered() {
+        return ServiceOrdered;
     }
 
-    public void setServiceOrder(String serviceOrder) {
-        this.serviceOrder = serviceOrder;
+    public void setServiceOrdered(String ServiceOrdered) {
+        this.ServiceOrdered = ServiceOrdered;
     }
 
     public String getServiceProvider() {
@@ -48,11 +48,11 @@ public class Order {
     }
 
     public String getTime() {
-        return time;
+        return Time;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setTime(String Time) {
+        this.Time = Time;
     }
 
     public String getTotalAmount() {

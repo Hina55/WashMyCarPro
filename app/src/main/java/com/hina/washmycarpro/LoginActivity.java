@@ -52,10 +52,21 @@ public class LoginActivity extends Activity {
         progressBar = findViewById(R.id.progressbar);
         fAuth = FirebaseAuth.getInstance();
 
+
+
         if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),UserActivity.class));
-            finish();
+
+            if(fAuth.getCurrentUser().getEmail().equals("luxury@gmail.com")){
+                startActivity(new Intent(getApplicationContext(),ServiceProviderActivity.class));
+                finish();
+            }
+            else{
+                startActivity(new Intent(getApplicationContext(),UserActivity.class));
+                finish();
+            }
+
         }
+
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +92,8 @@ public class LoginActivity extends Activity {
 
                 progressBar.setVisibility(View.VISIBLE);
 
+
+
                 //authenticate the user
                 fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -90,7 +103,14 @@ public class LoginActivity extends Activity {
                             Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
                             var=-1;
 
-                            startActivity(new Intent(getApplicationContext(),UserActivity.class));
+                            if(email.equals("luxury@gmail.com")){
+                                startActivity(new Intent(getApplicationContext(),ServiceProviderActivity.class));
+                            }
+                            else{
+                                startActivity(new Intent(getApplicationContext(),UserActivity.class));
+                            }
+
+
 
                             FirebaseInstanceId.getInstance().getInstanceId()
                                     .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>()

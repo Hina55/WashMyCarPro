@@ -45,7 +45,7 @@ public class OrderListRecyclerViewAdapter extends RecyclerView.Adapter<OrderList
 
             holder.name.setText(order.getName());
             holder.email.setText(order.getEmail());
-            holder.orderDescription.setText(order.getServiceOrder());
+            holder.orderDescription.setText(order.getServiceOrdered());
             holder.orderTime.setText(order.getTime());
         }
     }

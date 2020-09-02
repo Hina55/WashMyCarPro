@@ -2,35 +2,35 @@ package com.hina.washmycarpro;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.hina.washmycarpro.adapter.OrderListRecyclerViewAdapter;
-import com.hina.washmycarpro.adapter.notificationListAdapter;
+import com.google.firebase.firestore.Query;
 import com.hina.washmycarpro.model.Order;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class ServiceProviderActivity extends AppCompatActivity {
 
-    FirebaseFirestore firestore;
-    List<Order> orderList;
-    RecyclerView orderRecyclerViewList;
-    notificationListAdapter adapter;
+    private FirebaseFirestore firebaseFirestore;
+    private RecyclerView mFirestoreList;
+    private FirestoreRecyclerAdapter adapter;
     TextView placeHolderTextView;
     ProgressBar progressBar;
 
@@ -39,49 +39,103 @@ public class ServiceProviderActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_provider);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1F7FB8")));
         getSupportActionBar().setTitle("Service Provider");
-        firestore = FirebaseFirestore.getInstance();
-        orderList = new ArrayList<>();
-        orderRecyclerViewList = findViewById(R.id.notificationList);
+
+        Drawable backArrow = getResources().getDrawable(R.drawable.ic_local_car_wash_black_24dp);
+        backArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(backArrow);
+
+
         progressBar = findViewById(R.id.progressBar);
         placeHolderTextView = findViewById(R.id.noOrderPlaceHolder);
-        adapter = new notificationListAdapter();
-        orderRecyclerViewList.setAdapter(adapter);
+        firebaseFirestore=FirebaseFirestore.getInstance();
+        mFirestoreList=findViewById(R.id.notificationList);
 
-        
+        Query query = firebaseFirestore.collection("orders");
+        FirestoreRecyclerOptions<Order> options = new FirestoreRecyclerOptions.Builder<Order>()
+                .setQuery(query,Order.class)
+                .build();
 
-        firestore.collection("orders").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+       adapter = new FirestoreRecyclerAdapter<Order, OrderNotificationViewHolder>(options) {
+            @NonNull
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                progressBar.setVisibility(View.GONE);
-                if (task.isSuccessful()) {
-                    orderRecyclerViewList.setVisibility(View.VISIBLE);
-                    placeHolderTextView.setVisibility(View.GONE);
-
-                    for (QueryDocumentSnapshot documentSnapshot : Objects.requireNonNull(task.getResult())) {
-                        Order order = new Order();
-                            order.setDate(documentSnapshot.getString("Date"));
-                            order.setName(documentSnapshot.getString("Name"));
-                            order.setServiceOrder(documentSnapshot.getString("ServiceOrdered"));
-                            order.setServiceProvider(documentSnapshot.getString("ServiceProvider"));
-                            order.setTime(documentSnapshot.getString("Time"));
-                            order.setTotalAmount(documentSnapshot.getString("Total Amount"));
-                            order.setEmail(documentSnapshot.getString("email"));
-                            orderList.add(order);
-                    }
-                    adapter.addItem(orderList);
-                } else {
-                    orderRecyclerViewList.setVisibility(View.GONE);
-                    placeHolderTextView.setVisibility(View.VISIBLE);
-                }
+            public OrderNotificationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_notification_list,parent,false);
+                return new OrderNotificationViewHolder(view);
             }
-        });
+
+            @Override
+            protected void onBindViewHolder(@NonNull OrderNotificationViewHolder holder, int position, @NonNull Order model) {
+
+                holder.name.setText(model.getName());
+                holder.email.setText(model.getEmail());
+                holder.orderDescription.setText(model.getServiceOrdered());
+                holder.orderTime.setText(model.getTime());
+                holder.orderDate.setText(model.getDate());
+                progressBar.setVisibility(View.INVISIBLE);
+            }
+        };
+
+
+       mFirestoreList.setHasFixedSize(true);
+       mFirestoreList.setLayoutManager(new LinearLayoutManager(this));
+       mFirestoreList.setAdapter(adapter);
+
     }
+
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.user, menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                finish();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /*@Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }*/
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    private class OrderNotificationViewHolder extends RecyclerView.ViewHolder {
+
+        TextView name, email, orderTime, orderDescription,orderDate;
+        public OrderNotificationViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            name = itemView.findViewById(R.id.orderUserName);
+            email = itemView.findViewById(R.id.orderUserEmail);
+            orderTime = itemView.findViewById(R.id.orderTime);
+            orderDescription = itemView.findViewById(R.id.orderDescription);
+            orderDate=itemView.findViewById(R.id.orderUserDate);
+
+        }
     }
 }
